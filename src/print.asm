@@ -38,6 +38,25 @@
 		pop ax
 	endm
 
+	print_str_0d proc	;prints str from dx
+		push 	di
+		push 	dx
+		push 	bx
+		mov	di, dx	
+		dec di
+print0dh_loop:	inc di
+		mov 	dl, [di]
+		putchar
+		mov	bl, [di]
+		cmp 	bl, 0dh
+		jne 	print0dh_loop
+		
+		pop 	bx
+		pop 	dx
+		pop 	di
+		ret	
+	endp
+		
 	println macro	; prints string from DX and puts new line after it
 		print_str
 		newline

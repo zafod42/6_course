@@ -1,6 +1,6 @@
 
-PWD=~/Documents/Programming/asm-treg/
-TASM=~/Documents/Programming/tasm/
+PWD=~/Documents/programming/asm/course-treg/
+TASM=~/Documents/DOS_ASM/tasm/
 
 
 all: run
