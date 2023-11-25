@@ -9,7 +9,7 @@ build: bin/COURSE.EXE
 show:	
 	cat bin/BUILD.LOG bin/LINK.LOG
 
-bin/COURSE.EXE: src/course.asm src/print.asm src/procs.asm src/ph.asm
+bin/COURSE.EXE: src/course.asm src/print.asm src/procs.asm src/ph.asm src/fts.asm
 	mkdir -p bin
 	dosbox 	-c "@echo off"\
 		-c "cls"\
