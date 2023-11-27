@@ -19,7 +19,11 @@ include d:\print.asm
 	count_delta db "	(3) - (4) = $"
 	second_msg db "Calculate time with increasing rate of irq0 up to 60Hz$"	
 	third_msg db "Calculate time with 0 channel of timer$"
-
+	values_msg db "Values of:$"
+	f_val	db "	[0x46C] = $"
+	s_val	db "	[0x46D]	= $"
+	t_val	db "	[0x46E] = $"
+	fo_val	db "	[0x46F] = $"
 	new_timer_cw db 00110110b
 	new_timer_counter dw 0FFFFh
 
@@ -74,11 +78,11 @@ perform_test macro message
 
 endm
 
-; TODO: value of counter from 0 channel of timer
 ;	- [x] [0x046c] timer
 ;	- [x] increasing of timer frequency
-;	- [ ] 0 channel of timer withno interrupt
-;	- [ ] make program beautiful
+;	- [x] 0 channel of timer withno interrupt
+;	- [x] make program beautiful
+; EVERYTHING IS MADE NOW YAWHOOOOOO
 	.code
 start:	mov 	ax, @data
 	mov	ds, ax
@@ -147,6 +151,30 @@ start:	mov 	ax, @data
 	newline
 	add 	sp, 4
 
+	newline
+	lea	dx, values_msg
+	println
+	lea	dx, f_val
+	print_str
+	push 	[es:6ch]
+	call 	print_hex
+	newline
+	lea	dx, s_val
+	print_str
+	push	[es:6dh]
+	call	print_hex
+	newline
+	lea	dx, t_val	
+	print_str
+	push 	[es:6eh]
+	call 	print_hex
+	newline
+	lea	dx, fo_val	
+	print_str
+	push	[es:6fh]
+	call	print_hex
+	newline
+	add	sp, 8
 	pause
 	exit
 
